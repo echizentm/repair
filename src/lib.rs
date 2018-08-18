@@ -70,7 +70,7 @@ impl RePair {
 
     fn make_index2word(&mut self, text: &str) -> Vec<usize> {
         let mut ids = Vec::new();
-        let mut word2index: HashMap<char, usize> = HashMap::new();
+        let mut word2index = HashMap::new();
 
         for word in text.chars() {
             let next_index = word2index.len();
