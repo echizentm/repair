@@ -6,8 +6,8 @@ use std::collections::HashMap;
 /// Implementation of RePair.
 pub struct RePair {
     rule_length: usize,
-    index2word: HashMap<usize, char>,
-    index2rule: HashMap<usize, Vec<usize>>,
+    pub index2word: HashMap<usize, char>,
+    pub index2rule: HashMap<usize, Vec<usize>>,
 }
 
 impl RePair {
