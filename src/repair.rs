@@ -37,8 +37,12 @@ impl RePair {
     /// assert_eq!(re_pair.decode(), "abracadabra".to_string());
     /// ```
     pub fn decode(&self) -> String {
+        self.decode_from_rule(&self.index2rule[&self.head_rule_id()])
+    }
+
+    pub fn decode_from_rule(&self, rule: &Vec<usize>) -> String {
         let mut ids = Vec::new();
-        ids.extend(self.index2rule[&self.head_rule_id()].iter().clone());
+        ids.extend(rule.iter().clone());
         loop {
             let mut is_decoded = false;
             let mut next_ids = Vec::new();
