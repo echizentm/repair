@@ -1,7 +1,12 @@
+//! # StringAttractor
+//!
+//! `string_attractor` is indices of char that any substring or it's copy includes.
+//! https://arxiv.org/abs/1710.10964
 use repair::RePair;
 use std::collections::HashSet;
 
-struct StringAttractor {
+/// Implementation of StringAttractor.
+pub struct StringAttractor {
     pub indices: HashSet<usize>,
 }
 
@@ -18,9 +23,22 @@ impl StringAttractor {
         string_attractor
     }
 
+    /// Get indices.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use repair::repair::RePair;
+    /// use repair::string_attractor::StringAttractor;
+    ///
+    /// let repair = RePair::new("abracadabra");
+    /// let string_attractor = StringAttractor::new(&repair);
+    ///
+    /// assert!(string_attractor.get_indices("abra", "abracadabra").len() > 0);
+    /// ```
     pub fn get_indices(&self, subtext: &str, text: &str) -> HashSet<usize> {
         let mut indices = HashSet::new();
-        for (start_byte_index, matched_text) in text.match_indices(subtext) {
+        for (start_byte_index, _) in text.match_indices(subtext) {
             let start_index = text[0..start_byte_index].chars().count();
             let end_index = start_index + subtext.chars().count();
 
